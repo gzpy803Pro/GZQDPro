@@ -1,0 +1,46 @@
+#category{
+    background-color: lightblue;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px cadetblue;
+}
+
+#category ul,li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#category li{
+    float: left;
+    margin-left: 10px;
+}
+
+#books ul,li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#books li{
+    float: left;
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 5px 5px 5px lightgray;
+    background-color: aliceblue;
+}
+
+#books li dl {
+    padding: 0;
+    margin: 0;
+}
+
+#books dd {
+    text-align: center;
+    margin: 5px 0;
+}
+
+#books img:hover{
+    transform: scale3d(1.1,1.1,1.1);
+    transition: transform linear .2s;
+}
