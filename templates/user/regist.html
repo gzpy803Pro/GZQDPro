@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div>
+        <form action="/user/regist/"
+              method="post"
+              class="form form-horizontal">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label class="col-md-3 col-md-push-2">账号:</label>
+                <div class="col-md-6">
+                    <input name='username' class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <span>* 至少6个英文字符</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 col-md-push-2">口令:</label>
+                <div class="col-md-6">
+                    <input type="password" name="password" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <span>* 至少8个字符(字母、数字)</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 col-md-push-2">重复口令:</label>
+                <div class="col-md-6">
+                    <input type="password" name="password2" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <span>* 必须同口令一致</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 col-md-push-2">别名</label>
+                <div class="col-md-6">
+                    <input name="nick_name" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <span>*</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 col-md-push-2">手机号</label>
+                <div class="col-md-6">
+                    <input name="phone" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <span>*</span>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-success">注册</button>
+                <a class="btn btn-link">已注册用户，去登录</a>
+            </div>
+
+        </form>
+        {% if errors %}
+            <div class="text-center text-danger">
+                {{ errors }}
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
