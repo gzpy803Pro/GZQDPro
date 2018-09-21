@@ -18,11 +18,11 @@
                         </div>
                         <div id="tags">
                             <ul>
-                                <li class="tag">连载</li>
-                                <li class="tag">VIP</li>
-                                <li class="tag">签约</li>
-                                <li class="cate">都市</li>
-                                <li class="cate">青春校园</li>
+                                {% for tag in book.tags.all %}
+                                     <li class="tag">{{ tag.title }}</li>
+                                {% endfor %}
+                                <li class="cate">{{ book.category.parent.title }}</li>
+                                <li class="cate">{{ book.category.title }}</li>
                                 <div class="clearfix"></div>
                             </ul>
                         </div>
@@ -41,11 +41,9 @@
             <div id="week_rank">
                 <h4>周点击排行</h4>
                 <ul>
-                    <li><span class="no1">1</span><span class="title">圣域</span></li>
-                    <li><span class="no2">2</span><span class="title">圣域</span></li>
-                    <li><span class="no3">3</span><span class="title">圣域</span></li>
-                    <li><span class="no">4</span><span class="title">圣域</span></li>
-                    <li><span class="no">5</span><span class="title">圣域</span></li>
+                    {% for rank_book in rank_books %}
+                        <li><span class="no{% if forloop.counter <= 3 %}{{ forloop.counter }}{% endif %}">{{ forloop.counter }}</span><span class="title">{{ rank_book.name }}</span></li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
