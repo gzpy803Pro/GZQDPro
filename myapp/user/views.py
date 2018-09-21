@@ -12,6 +12,9 @@ def regist(request):
         if form.is_valid():
             user = form.save()
             # 将登录用户的信息存放到缓存中(session)
+            request.session['login_user'] = json.dumps({'id': user.id,
+                                                        'nick_name':user.nick_name,
+                                                        'photo': user.photo})
             return redirect('/')
         else:
             # errors = form.errors  # 网页源码的错误信息(ul-li)
