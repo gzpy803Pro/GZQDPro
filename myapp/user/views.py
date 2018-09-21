@@ -14,7 +14,9 @@ def regist(request):
             # 将登录用户的信息存放到缓存中(session)
             return redirect('/')
         else:
-            errors = form.errors
+            # errors = form.errors  # 网页源码的错误信息(ul-li)
+            errors = json.loads(form.errors.as_json())
+            print(errors)
     return render(request, 'user/regist.html', locals())
     # return HttpResponse(json.dumps({'name':'disen'}),
     #                     content_type='application/json')

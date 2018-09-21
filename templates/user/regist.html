@@ -4,6 +4,7 @@
 {% block content %}
 
     <div>
+        <h4 class="text-center">用户注册</h4>
         <form action="/user/regist/"
               method="post"
               class="form form-horizontal">
@@ -12,10 +13,10 @@
             <div class="form-group">
                 <label class="col-md-3 col-md-push-2">账号:</label>
                 <div class="col-md-6">
-                    <input name='username' class="form-control">
+                    <input name='username' class="form-control" value="{{ form.username.value }}">
                 </div>
                 <div class="col-md-3">
-                    <span>* 至少6个英文字符</span>
+                    <span class="{% if errors.username %}error-msg{% endif %}">* {{ errors.username.0.message }}</span>
                 </div>
             </div>
             <div class="form-group">
@@ -24,7 +25,7 @@
                     <input type="password" name="password" class="form-control">
                 </div>
                 <div class="col-md-3">
-                    <span>* 至少8个字符(字母、数字)</span>
+                     <span class="{% if errors.password %}error-msg{% endif %}">* {{ errors.password.0.message }}</span>
                 </div>
             </div>
             <div class="form-group">
@@ -33,25 +34,25 @@
                     <input type="password" name="password2" class="form-control">
                 </div>
                 <div class="col-md-3">
-                    <span>* 必须同口令一致</span>
+                     <span class="{% if errors.password2 %}error-msg{% endif %}">* {{ errors.password2.0.message }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 col-md-push-2">别名</label>
                 <div class="col-md-6">
-                    <input name="nick_name" class="form-control">
+                    <input name="nick_name" class="form-control" value="{{ form.nick_name.value }}">
                 </div>
                 <div class="col-md-3">
-                    <span>*</span>
+                     <span class="{% if errors.nick_name %}error-msg{% endif %}">* {{ errors.nick_name.0.message }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-3 col-md-push-2">手机号</label>
                 <div class="col-md-6">
-                    <input name="phone" class="form-control">
+                    <input name="phone" class="form-control" value="{{ form.phone.value }}">
                 </div>
                 <div class="col-md-3">
-                    <span>*</span>
+                     <span class="{% if errors.phone %}error-msg{% endif %}">* {{ errors.phone.0.message }}</span>
                 </div>
             </div>
             <div class="form-group text-center">
@@ -60,11 +61,6 @@
             </div>
 
         </form>
-        {% if errors %}
-            <div class="text-center text-danger">
-                {{ errors }}
-            </div>
-        {% endif %}
     </div>
 
 {% endblock %}
