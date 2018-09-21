@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block css %}
+  <style>
+     #preImg:active{
+         transform: scale3d(1.01, 1.01,1.01);
+     }
+  </style>
+{% endblock %}
 {% block content %}
 
     <div>
@@ -38,7 +45,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-3 col-md-push-2">别名</label>
+                <label class="col-md-3 col-md-push-2">别名：</label>
                 <div class="col-md-6">
                     <input name="nick_name" class="form-control" value="{{ form.nick_name.value }}">
                 </div>
@@ -47,12 +54,20 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-3 col-md-push-2">手机号</label>
+                <label class="col-md-3 col-md-push-2">手机号：</label>
                 <div class="col-md-6">
                     <input name="phone" class="form-control" value="{{ form.phone.value }}">
                 </div>
                 <div class="col-md-3">
                      <span class="{% if errors.phone %}error-msg{% endif %}">* {{ errors.phone.0.message }}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 col-md-push-2">头像：</label>
+                <div class="col-md-6">
+                    <img id="preImg" src="{% static 'base/images/default.jpg' %}"
+                         width="100" height="120" alt='上传头像'
+                         onclick="selectFileInput.click()">
                 </div>
             </div>
             <div class="form-group text-center">
@@ -61,6 +76,44 @@
             </div>
 
         </form>
+        <input id="selectFileInput" type="file"
+               style="display: none" onchange="uploadFile(this.files[0])">
     </div>
 
+{% endblock %}
+
+{% block js %}
+  <script>
+        function uploadFile(imgFile) {
+            console.log(imgFile);
+            // 后端开发人员－提供图片文件上传接口
+            let url = '/upload/user_photo/';
+
+            let formData  = new FormData();
+            formData.append('photo', imgFile);
+
+            // 创建Ajax的对象(XMLHttpRequest)
+            let request = new XMLHttpRequest()
+            request.open('post',url,true);
+            // 设置请求的监听
+            request.onload = function () {
+                // 获取响应的数据
+                if(request.status == 200 && request.readyState == 4){
+                    data = JSON.parse(request.responseText);  // json字符串转成json对象
+                    alert(data.msg);
+
+                    // 将上传成功的图片显示出来
+                    $('#preImg').attr('src', '/static/'+data.path);
+
+                    // 图片的路径写入到注册表单
+                    $(document.forms[1]).append('<input type="hidden" name="photo" value="'+data.path+'">');
+                }
+            };
+
+            // 发送文件上传的请求
+            request.send(formData)
+
+        }
+
+  </script>
 {% endblock %}

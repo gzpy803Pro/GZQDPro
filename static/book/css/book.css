@@ -1,0 +1,75 @@
+ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+#book_title h3 h5{
+    display: inline;
+}
+
+
+#tags li{
+    float: left;
+    margin: 2px;
+    padding: 5px 20px;
+}
+
+#tags .tag {
+    border: 1px solid blue;
+    border-radius: 100px;
+}
+
+#tags .cate {
+    border: 1px solid red;
+    border-radius: 100px;
+}
+
+#week_rank{
+    margin: 2px;
+    border: 1px solid lightblue;
+}
+#week_rank h4{
+    background-color: lightgoldenrodyellow;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+#week_rank ul{
+    padding: 5px;
+}
+
+#week_rank ul > li{
+    border-bottom: 1px dotted lightgray;
+    font-size: 1.5rem;
+}
+
+#week_rank li span{
+    margin: 5px;
+    padding: 2px;
+}
+
+#week_rank .no1{
+
+    background-color: red;
+    color: white;
+    padding: 1px 5px;
+}
+
+#week_rank .no2{
+    background-color: indianred;
+    color: white;
+    padding: 1px 5px;
+}
+
+#week_rank .no3{
+    background-color: yellowgreen;
+    padding: 1px 5px;
+}
+
+#week_rank .no{
+    background-color: lightgray;
+    padding: 1px 5px;
+}

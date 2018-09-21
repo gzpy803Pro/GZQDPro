@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'book/css/book.css' %}">
+{% endblock %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8">
+            <div id="book">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ book.cover.url }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div id="book_title">
+                            <h3>{{ book.name }}</h3> <h5>{{ book.author }} 著</h5>
+                        </div>
+                        <div id="tags">
+                            <ul>
+                                <li class="tag">连载</li>
+                                <li class="tag">VIP</li>
+                                <li class="tag">签约</li>
+                                <li class="cate">都市</li>
+                                <li class="cate">青春校园</li>
+                                <div class="clearfix"></div>
+                            </ul>
+                        </div>
+                        <div>{{ book.content|safe }}</div>
+                        <div>
+                            <a class="btn btn-danger">免费阅读</a>
+                            <a class="btn btn-success">好书收藏</a>
+                            <a class="btn btn-default">立即分享</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div id="week_rank">
+                <h4>周点击排行</h4>
+                <ul>
+                    <li><span class="no1">1</span><span class="title">圣域</span></li>
+                    <li><span class="no2">2</span><span class="title">圣域</span></li>
+                    <li><span class="no3">3</span><span class="title">圣域</span></li>
+                    <li><span class="no">4</span><span class="title">圣域</span></li>
+                    <li><span class="no">5</span><span class="title">圣域</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

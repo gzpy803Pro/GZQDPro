@@ -29,7 +29,7 @@
                         </dt>
                         <dd>{{ book.name }}</dd>
                         <dd>{{ book.author }} <span class="btn-sm">著</span></dd>
-                        <dd><a class="btn btn-primary">开始阅读</a></dd>
+                        <dd><a class="btn btn-primary" href="/book/show/{{ book.id }}/">开始阅读</a></dd>
                     </dl>
                 </li>
             {% endfor %}

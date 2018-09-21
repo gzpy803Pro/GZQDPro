@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import json
+
 from django.conf.urls import url, include
 from django.core.paginator import Paginator
 from django.shortcuts import render
@@ -39,6 +41,10 @@ def index(request):
     paginator = Paginator(books, 2)  # 2表示每页显示的记录数
     pager = paginator.page(int(request.GET.get('page', 1)))  # 获取指定页面的小说
 
+    # 获取当前用户的信息
+    login_user = request.session.get('login_user')
+    if login_user:
+        login_user = json.loads(login_user)
     return render(request,
                   'index.html',
                   locals())  # 将局部变量转成字典
@@ -47,5 +53,7 @@ def index(request):
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('user.urls')),
+    url(r'^upload/', include('upload.urls')),
+    url(r'^book/', include('art.urls')),
     url(r'', index),
 ]
