@@ -28,7 +28,7 @@
                         </div>
                         <div>{{ book.content|safe }}</div>
                         <div>
-                            <a class="btn btn-danger">免费阅读</a>
+                            <a class="btn btn-danger" onclick="qbuy('{{ book.id }}')" id="qbuyBtn">免费阅读</a>
                             <a class="btn btn-success">好书收藏</a>
                             <a class="btn btn-default">立即分享</a>
                         </div>
@@ -49,4 +49,56 @@
         </div>
     </div>
 
+{% endblock %}
+{% block js %}
+<script>
+    var qbuying = false;  //是否正在抢购中
+    var query_id = 0;
+    function qbuy(book_id) {
+        if(qbuying){
+            return;
+        }
+
+        $.getJSON('/book/qbuy/'+book_id+"/", function (data) {
+             // 读取或解析 响应的数据(json格式)
+            alert(data.msg);
+            if (data.code == 301){
+                if(confirm('是否转到登录页面?')){
+                    window.open('/user/regist/',  target='_self');
+                }
+            }else if(data.code == 201){
+                $(this).text('抢购中...');
+                 qbuying = true;
+
+                 // 定时查询
+                 query_id = setInterval(function () {
+
+                     $.getJSON('/book/query_qbuy/'+book_id+"/", function (query_data) {
+                          if (query_data.code != 201){
+                              // 停止定时查询
+                              clearInterval(query_id);
+                              console.log('clearInterval()-->'+query_id)
+                              alert(query_data.msg);
+                          }
+
+                          if(query_data.code == 200){
+                              $('#qbuyBtn').text('抢购成功');
+                          }else if(query_data.code == 201){
+                              $('#qbuyBtn').text('抢购中...');
+                          }else{
+                              $('#qbuyBtn').text('抢购失败');
+                          }
+
+
+
+                     });
+                 },1000)
+            }
+
+        });
+    }
+
+
+
+</script>
 {% endblock %}

@@ -69,3 +69,5 @@ redis.exceptions.ConnectionError: Error 61 connecting to 127.0.0.1:6379. Connect
 2018-09-25 mdjango 13: 1不能和字符1相加!
 2018-09-25 mdjango 7: --->test_file_log--
 2018-09-25 mdjango 13: 1不能和字符1相加!
+2018-09-25 mdjango 9: --->test_file_log--
+2018-09-25 mdjango 15: 1不能和字符1相加!

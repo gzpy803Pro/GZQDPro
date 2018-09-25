@@ -14,6 +14,8 @@ import os
 import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import djcelery
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 引入自定义的源码根目录(导包时是被忽略)
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'user',
     'upload',
+    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -168,3 +171,34 @@ LOGGING = {
     }
 }
 # --------end logging---
+
+# --- 配置CACHE缓存
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/9',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient'
+        }
+    },
+    'art_page': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/10',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient'
+        }
+    }
+}
+
+# 将Session存储的数据放入到Cache缓存中
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_COOKIE_NAME = 'my_session_id'
+# SESSION_COOKIE_AGE = 604800
+
+
+# 配置Django-Celery
+djcelery.setup_loader()
+
+BROKER_URL = 'redis://127.0.0.1:6379/12'
+CELERY_IMPORTS = ('art.tasks',)
+CELERY_TIMEZONE = 'Asia/Shanghai'
