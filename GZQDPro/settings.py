@@ -31,7 +31,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,7 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'GZQDPro.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -87,7 +85,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -107,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -121,7 +117,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -131,3 +126,45 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # 在Model的ImageField和FileField的upload_to 属性中使用
 MEDIA_URL = '/static/upload/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload')
+
+# -------配置日志-----
+LOGGING = {
+    'version': 1,
+    'disable_existing_logger': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s %(funcName)s -> %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple': {
+            'format': '%(asctime)s -> %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        }
+    },
+    'handlers': {
+        'file_handler': {
+            'level': 'INFO',
+            'formatter': 'standard',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': 'qd.log'
+        },
+        'console': {
+            'level': 'INFO',
+            'formatter': 'simple',
+            'class': 'logging.StreamHandler'
+        }
+    },
+    'loggers': {
+        'mdjango': {
+            'level': 'INFO',
+            'handlers': ['console', 'file_handler'],
+            'propagate': True
+        },
+        # 'django.request2': {
+        #     'level': 'INFO',
+        #     'handlers': ['console', 'file_handler'],
+        #     'propagate': False
+        # }
+    }
+}
+# --------end logging---

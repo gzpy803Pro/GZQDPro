@@ -1,0 +1,71 @@
+2018-09-25 09:43:36,503 root /Users/apple/PycharmProjects/GZQDPro/myapp/art/tests.py: 1不能和字符1相加!
+2018-09-25 09:46:29,248 root /Users/apple/PycharmProjects/GZQDPro/myapp/art/tests.py: --->test_file_log--
+2018-09-25 09:46:29,249 root /Users/apple/PycharmProjects/GZQDPro/myapp/art/tests.py: 1不能和字符1相加!
+2018-09-25 09:47:21,233 root /Users/apple/PycharmProjects/GZQDPro/myapp/art/tests.py: --->test_file_log--
+2018-09-25 09:47:21,233 root /Users/apple/PycharmProjects/GZQDPro/myapp/art/tests.py: 1不能和字符1相加!
+2018-09-25 root 8: --->test_file_log--
+2018-09-25 root 14: 1不能和字符1相加!
+2018-09-25 django.request 135: Internal Server Error: /book/show/2/
+Traceback (most recent call last):
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 484, in connect
+    sock = self._connect()
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 541, in _connect
+    raise err
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 529, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/client.py", line 667, in execute_command
+    connection.send_command(*args)
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 610, in send_command
+    self.send_packed_command(self.pack_command(*args))
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 585, in send_packed_command
+    self.connect()
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 489, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 61 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 484, in connect
+    sock = self._connect()
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 541, in _connect
+    raise err
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 529, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/django/core/handlers/exception.py", line 41, in inner
+    response = get_response(request)
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/apple/PycharmProjects/GZQDPro/myapp/art/views.py", line 12, in show
+    week_rank.add_rank(id)
+  File "/Users/apple/PycharmProjects/GZQDPro/myapp/helper/week_rank.py", line 6, in add_rank
+    if rd_.exists('WeekRank'):
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/client.py", line 951, in exists
+    return self.execute_command('EXISTS', name)
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/client.py", line 673, in execute_command
+    connection.send_command(*args)
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 610, in send_command
+    self.send_packed_command(self.pack_command(*args))
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 585, in send_packed_command
+    self.connect()
+  File "/Users/apple/venv/GZQDPro/lib/python3.6/site-packages/redis/connection.py", line 489, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 61 connecting to 127.0.0.1:6379. Connection refused.
+2018-09-25 mdjango 7: --->test_file_log--
+2018-09-25 mdjango 13: 1不能和字符1相加!
+2018-09-25 mdjango 7: --->test_file_log--
+2018-09-25 mdjango 13: 1不能和字符1相加!
+2018-09-25 mdjango 7: --->test_file_log--
+2018-09-25 mdjango 13: 1不能和字符1相加!
