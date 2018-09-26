@@ -12,6 +12,7 @@ import time
 from art.tasks import qbuy
 from helper import rd_
 
+
 # Create your views here.
 @cache_page(10, cache='art_page', key_prefix='art')
 def show(request, id):

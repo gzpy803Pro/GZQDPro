@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'user',
     'upload',
     'djcelery',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -202,3 +203,12 @@ djcelery.setup_loader()
 BROKER_URL = 'redis://127.0.0.1:6379/12'
 CELERY_IMPORTS = ('art.tasks',)
 CELERY_TIMEZONE = 'Asia/Shanghai'
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

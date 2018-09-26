@@ -37,6 +37,7 @@ class CategoryModel(models.Model):
                                on_delete=models.SET_NULL,
                                null=True,
                                blank=True,
+                               related_name='childs',  # 反向查询的关系字段名，默认 categorymodel_set
                                verbose_name='所属分类')
 
     def __str__(self):

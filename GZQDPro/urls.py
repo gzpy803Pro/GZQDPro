@@ -22,6 +22,8 @@ from django.shortcuts import render
 import xadmin as admin
 from art.models import CategoryModel, BookModel
 
+from api_ import api_router
+
 
 def index(request):
     # 查询一级分类
@@ -55,5 +57,7 @@ urlpatterns = [
     url(r'^user/', include('user.urls')),
     url(r'^upload/', include('upload.urls')),
     url(r'^book/', include('art.urls')),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^api/', include(api_router.urls)),
     url(r'', index),
 ]
